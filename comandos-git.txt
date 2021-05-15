@@ -28,3 +28,4 @@ git remote
 sobe o conteudo commitado para o servidor remoto (exige login e senha)
 sem o parametro --set-upstream  o git nao sabe para onde subir
 git push --set-upstream main main
+-
