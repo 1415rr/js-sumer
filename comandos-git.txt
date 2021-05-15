@@ -1,0 +1,30 @@
+apaga o status do git local
+rd .git /s /q
+
+inicia o diretorio corrente como git
+git init
+
+faz o link com a branch main(?) do diretorio de origem remoto
+git remote add main https://github.com/1415rr/js-sumer.git
+
+desce a versão do remoto
+git pull main main
+
+adiciona o conteudo do diretorio corrente com o conteudo "descido"
+git add .
+
+mostra o status - arquivos que irão subir
+git status
+
+confirma as mudanças identificadas no status
+git commit
+
+aponta o branch para main ( main x master - #blm )
+git branch -M main
+
+mostra o nome da branch local(?)
+git remote
+
+sobe o conteudo commitado para o servidor remoto (exige login e senha)
+sem o parametro --set-upstream  o git nao sabe para onde subir
+git push --set-upstream main main
