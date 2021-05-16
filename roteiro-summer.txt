@@ -1,0 +1,45 @@
+conta ano 1-10
+	define comodities
+	ouro , ferro, terra, pessoas, madeira, 
+	define produtos das comodities
+	 trabalhadores, soldados,  armas, colheita (trigo?), pecuária, 
+
+	sorteia preço comodities - estudei preço e proporcao.
+	
+	aguarda ordem
+		atualiza saldos na tela
+		compra, venda, uso das reservas, comercio exterior(trade?), guerra, fim do ano
+	loop-aguarda
+	calcula ações sobre produtos
+	calcula ações sobre comodities
+	imprime ações
+
+	sorteia eventos da natureza
+	sorteia imigrações
+	sorteia ataques
+	imprime eventos
+
+	calcula eventos sobre produtos
+	calcula eventos sobre comodities
+	imprime comparações inicio do ano, ações, pos eventos
+	calcula E/R - evolução ou regressão
+	calcula eventos sobre E/R
+	julga E/R ponderado
+	se não há o que governar
+		fClassifica
+		fim
+	se houve perdas muito grandes (com eventos )
+		fClassifica
+		fim
+	se houve erros muito grandes ( fora eventos )
+		fClassifica
+		fim
+loop-ano
+fim
+
+fClassifica
+	classifica o reinado durante o ano
+		aqui vai um tratamento com textos.
+	classifica o reinado acumulado
+		aqui vai um tratamento com textos.
+	imprime 
