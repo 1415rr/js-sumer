@@ -1,0 +1,39 @@
+nomencaltura dos objetos
+onde:
+m - minuscula
+M - maiuscula
+cC - camelCase
+PC - PascalCase
+_c - snake_case minuscula
+-c - kebab-case minuscula
+
+instanciados:
+1m: v - var, l - let, k - const, g - global, p - param, b - bloco, bfor, bwhi, bswi, bif, bfun - para cada tipo de bloco.
+3PC: Obj, Int, Dec, Str, Arr, Fun
+
+PC - Substantivo
+PC - SubstantivoDoSubstantivo
+PC - SubstantivoAdjetivo
+
+
+Variaveis com nomes livres:
+a1, a2, a3... - valores auxiliares
+
+OBS1: se o valor for decimal, usar a vogal dobrada, ex:
+aa1, aa2, aa3...
+
+i, j, x, y, z - contadores. Para aninhados, numerar. Ex:
+for i1 {
+   for i2 {
+      for i3{
+      }
+   }
+}
+
+s1, s2, s3... string auxiliar 
+o1, o2, o3... obj auxiliar
+f1, f2, f3... funcao auxiliar
+
+funcao:
+fVerboSubstantivo ou 
+fVerboSubstantivoAdjetivo

@@ -10,5 +10,12 @@ for (gAnocorrente=1; gAnocorrente <= kTotalAnos; gAnocorrente++) {
    fTelaExibe ("PAINEL", garrItem);
 
 
+};
 
-;}
+kObj.nome = 'rafael';
+fTelaImprime (kObj);
+kObj.sobrenome = 'reis';
+fTelaImprime (kObj);
+kObj.sobrenome = 'moreira';
+fTelaImprime (kObj);
+

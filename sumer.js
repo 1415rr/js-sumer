@@ -1,21 +1,32 @@
 const kTotalAnos = 10;
 var   gAnocorrente = 1;
-var   garrItem;
-var   kOuro;
-var   kFerro;
-var   kTerra;
-var   kPessoas;
-var   kMadeira;
-var   kCampones;
-var   kSoldados;
-var   kArmas;
-var   kColheita;
-var   kPecuaria;
+
+function fGetObjItem(){
+   //  modelo do obj item
+   lObjItem = {
+      indice: {}, //campos serao os nomes dos indices: ouro, populacao, ferro..
+      itens: [] //em cada linha do array, terei um objeto para os itens.
+   };
+   return lObjItem;
+};
+
+{
+   lObjItem = fGetObjItem();
+   lObjItem = fLeItens(lObjItem);
+
+/*parei aqui.
+em seguida, inicializarei 
+quantidade e valor.
+
+devo ter uma funcao para regras de negocio ( agio, por exemplo - valor?? -- osclacao de valor?  nao é o momento...)
+*/
+}
 
 
 
-   function fSetItem (  nome, sUnidade, qtd, vlr, agio, tipoItem  )  {
-   lobjItem = { nome, iQuant:qtd, sUnidade, decValor:vlr, iAgio:agio, tipoItem };
+
+   function fSetItem (  nome, sUnidade, qtd, vlr, agio  )  {
+   lobjItem = { nome, iQuant:qtd, sUnidade, decValor:vlr, iAgio:agio };
       return lobjItem;
    };
 
@@ -25,16 +36,16 @@ var   kPecuaria;
       let i=0;
 
       kOuro = i++;
-      larrItem[kOuro] = fSetItem ("Ouro", "Moedas", qtd=1000, vlr=1, agio=10, "MOEDA" );
+      larrItem[kOuro] = fSetItem ("Ouro", "Moedas", qtd=1000, vlr=1, agio=10);
 
       kFerro = i++;
-      larrItem[kFerro] = fSetItem ("Ferro", 'Libras', qtd=10000, vlr=1, agio=10,  "MATERIAPRIMA" );
+      larrItem[kFerro] = fSetItem ("Ferro", 'Libras', qtd=10000, vlr=1, agio=10);
       
       kTerra = i++;
-      larrItem[kTerra] = fSetItem ("Terra", 'Hectares', qtd=10, vlr=2, agio=15, "MATERIAPRIMA" );
+      larrItem[kTerra] = fSetItem ("Terra", 'Hectares', qtd=10, vlr=2, agio=15);
       
       kPessoas = i++;
-      larrItem[kPessoas] = fSetItem ("População", 'Pessoas', qtd=100000, vlr=1, agio=10,  "PESSOA" );
+      larrItem[kPessoas] = fSetItem ("População", 'Pessoas', qtd=100000, vlr=1, agio=10);
 
       kMadeira = i++;
       larrItem[kMadeira] = fSetItem ("Madeira", 'Hectares', qtd=10, vlr=2, agio=15, "MATERIAPRIMA" );
