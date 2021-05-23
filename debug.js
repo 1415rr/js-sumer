@@ -1,11 +1,19 @@
-console.log ("debug.js");
+
+/*
+objetivo: 
+retorno: none
+observacoes: 
+Data: 23/MAI/2021
+Autor: 1415rr
+*/
 
 {
-let debug = false;
+let lDebug = true;
 
-   function debugConsoleJs (...param) {
-   if (debug) {
+   function debugConsoleLog (...param) {
+   if (lDebug) {
       console.log(...param);
    }
 };
 }
+debugConsoleLog ("debug.js.html");

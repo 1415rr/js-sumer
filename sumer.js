@@ -1,87 +1,130 @@
+debugConsoleLog ("sumer.js");
 const kTotalAnos = 10;
 var   gAnocorrente = 1;
 
-function fGetObjItem(){
-   //  modelo do obj item
-   lObjItem = {
-      indice: {}, //campos serao os nomes dos indices: ouro, populacao, ferro..
-      itens: [] //em cada linha do array, terei um objeto para os itens.
-   };
-   return lObjItem;
+/* 
+sumerObjItem será global pois é uma informação que é pertinente a toda a aplicação.
+nas funções, eu vou tratá-lo em uma variavel local, pois não sei se poderá haver
+uma implementação melhor no futuro.
+Data: 23/MAI/2021
+Autor: 1415rr
+*/
+
+let  sumerObjItem = {
+   indice: {},
+   itens: [], 
+   fSetItem: function (indice, item, valor) {
+      if (typeof this.itens[indice] === "undefined") {this.itens[indice]={}};
+      this.itens[indice][item]=valor;
+   },
+   fGetIndex: function (nomeIndice){
+      let lRetorno = -1;
+      if (typeof this.indice[nomeIndice] !== "undefined") { lRetorno = this.indice[nomeIndice]};
+      return lRetorno;
+   },
 };
 
-{
-   lObjItem = fGetObjItem();
-   lObjItem = fLeItens(lObjItem);
+function fSumerInicializaObj() {
+   /*
+   objetivo: inicializar o objeto sumerObjItem com os itens e indices necessarios.
+   retorno: none
+   observacoes: usa uma funcao local lfSetItem para encapsular o setitem do objeto.
+               esta funcao é especialmente util, pois cria os indices para 
+               navegar nos itens.
+               as funcoes de setPreco e SetQuantidade nao entram junto com inicializacao,
+               pois sao outra regras de negocio independentes.
+   Data: 23/MAI/2021
+   Autor: 1415rr
+   */
+   let i=0,
+      lSumerObjItem = sumerObjItem;
 
-/*parei aqui.
-em seguida, inicializarei 
-quantidade e valor.
-
-devo ter uma funcao para regras de negocio ( agio, por exemplo - valor?? -- osclacao de valor?  nao é o momento...)
-*/
-}
-
-
-
-
-   function fSetItem (  nome, sUnidade, qtd, vlr, agio  )  {
-   lobjItem = { nome, iQuant:qtd, sUnidade, decValor:vlr, iAgio:agio };
-      return lobjItem;
+   function lfSetItem (indice, nomeIndice, pNome, pUnidade){
+      lSumerObjItem.indice[nomeIndice] = indice;
+      lSumerObjItem.fSetItem (indice, "nome", pNome);
+      lSumerObjItem.fSetItem (indice, "unidade", pUnidade);
    };
 
+   lfSetItem ( i++, "ouro", "Ouro", "Moedas");
+   lfSetItem ( i++, "ferro", "Ferro", "Libras");
+   lfSetItem ( i++, "terra", "Terra", "Hectares");
+   lfSetItem ( i++, "madeira", "Madeira", "Hectares");
+   lfSetItem ( i++, "populacao", "População", "Pessoas");
+   lfSetItem ( i++, "camponeses", "Camponeses", "Pessoas");
+   lfSetItem ( i++, "soldados", "Soldados", "Pessoas");
+   lfSetItem ( i++, "armas", "Armas", "Unidades");
+   lfSetItem ( i++, "colheita", "Colheita", "Hectares");
+   lfSetItem ( i++, "pecuaria", "Pecuária", "Hectares");
+};
 
-   function fCarregaItens() {
-      let larrItem=[0];
-      let i=0;
+function fSumerInicializaObjQuantidade() {
+   /*
+   objetivo: carregar as quantidades iniciais do ojbSumer.
+   retorno: none
+   observacoes: usa uma funcao local lfSetQuantidade para encapsular o setItem do objeto.
+   Data: 23/MAI/2021
+   Autor: 1415rr
+   */
+   let lSumerObjItem = sumerObjItem;
 
-      kOuro = i++;
-      larrItem[kOuro] = fSetItem ("Ouro", "Moedas", qtd=1000, vlr=1, agio=10);
+   function lfSetQuantidade (nomeIndice, valor){
+      lSumerObjItem.fSetItem (lSumerObjItem.fGetIndex(nomeIndice), "quantidade", valor);
+      debugConsoleLog ("sumer.js", "lfSetQuantidade", "nomeIndice", nomeIndice, 
+      "lSumerObjItem", lSumerObjItem, "lSumerObjItem.fGetIndex" , lSumerObjItem.fGetIndex(nomeIndice) );
+   };
 
-      kFerro = i++;
-      larrItem[kFerro] = fSetItem ("Ferro", 'Libras', qtd=10000, vlr=1, agio=10);
-      
-      kTerra = i++;
-      larrItem[kTerra] = fSetItem ("Terra", 'Hectares', qtd=10, vlr=2, agio=15);
-      
-      kPessoas = i++;
-      larrItem[kPessoas] = fSetItem ("População", 'Pessoas', qtd=100000, vlr=1, agio=10);
+   lfSetQuantidade ("ouro", 1000);
+   lfSetQuantidade ("ferro", 10000);
+   lfSetQuantidade ("terra", 10);
+   lfSetQuantidade ("madeira", 10);
+   lfSetQuantidade ("populacao", 100000);
+   lfSetQuantidade ("camponeses", 1000);
+   lfSetQuantidade ("soldados", 800);
+   lfSetQuantidade ("armas", 500);
+   lfSetQuantidade ("colheita", 4);
+   lfSetQuantidade ("pecuaria", 1);
+};
 
-      kMadeira = i++;
-      larrItem[kMadeira] = fSetItem ("Madeira", 'Hectares', qtd=10, vlr=2, agio=15, "MATERIAPRIMA" );
+function fSumerInicializaObjPreco() {
+   /*
+   objetivo: carregar os precos iniciais do ojbSumer.
+   retorno: none
+   observacoes: usa uma funcao local lfSetQuantidade para encapsular o setItem do objeto.
+   Data: 23/MAI/2021
+   Autor: 1415rr
+   */
+   let lSumerObjItem = sumerObjItem;
 
-      kCampones = i++;
-      larrItem[kCampones] = fSetItem ("Camponeses", 'Pessoas', qtd=1000, vlr=2, agio=15, "PESSOA" );
+   function lfSetPreco (nomeIndice, valor){
+      lSumerObjItem.fSetItem (lSumerObjItem.fGetIndex(nomeIndice), "preco", valor);
+   };
 
-      kSoldados = i++;
-      larrItem[kSoldados] = fSetItem ("Soldados", 'Pessoas', qtd=800, vlr=3, agio=25, "PESSOA" );
-
-      kArmas = i++;
-      larrItem[kArmas] = fSetItem ("Armas", 'Unidades', qtd=500, vlr=15, agio=25, "PRODUTO" );
-
-      kColheita = i++;
-      larrItem[kColheita] = fSetItem ("Colheita", 'Hectares', qtd=4, vlr=15, agio=25, "PRODUTO" );
-
-      kPecuaria = i++;
-      larrItem[kPecuaria] = fSetItem ("Pecuaria", 'Hectares', qtd=1, vlr=15, agio=25, "PRODUTO" );
-
-      return larrItem ;
-      
-   }
-
-   function fDefinePrecos(arrItem) {
+   lfSetPreco ("ouro", 1);
+   lfSetPreco ("ferro", 1);
+   lfSetPreco ("terra", 2);
+   lfSetPreco ("madeira", 2);
+   lfSetPreco ("populacao", 1);
+   lfSetPreco ("camponeses", 2);
+   lfSetPreco ("soldados", 3);
+   lfSetPreco ("armas", 15);
+   lfSetPreco ("colheita", 15);
+   lfSetPreco ("pecuaria", 15);
 
       /* para saber como foram obtidos os valores, 
       consulte o arquivo obtendo-valores.txt 
       com todo o registro da pesquisa.
       */
+   lfSetPreco ("ferro", 4.4);
+   lfSetPreco ("terra", 1.6);
+   lfSetPreco ("pessoas", 1.535);
+   lfSetPreco ("madeira", 3.33);
+   lfSetPreco ("soldados", 60);
 
-      arrItem[kFerro   ].decValor = 4.4;
-      arrItem[kTerra   ].decValor = 1.6;
-      arrItem[kPessoas ].decValor = 1.535;
-      arrItem[kMadeira ].decValor = 3.33;
-      //arrItem[kCampones].decValor = ;
-      arrItem[kSoldados].decValor = 60;
+};
+
+
+   function fDefinePrecos(arrItem) {
+
       //arrItem[kArmas   ].decValor = ;
       //arrItem[kColheita].decValor = ;
       //arrItem[kPecuaria].decValor = ;

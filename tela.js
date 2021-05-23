@@ -1,29 +1,87 @@
-function fTelaExibe (...lArrParams) {
-   let lsTexto = '';
+debugConsoleLog ('tela.js');
+
+function fTelaImprime (idSaida, texto) {
+/*
+objetivo: fazer a impressão do texto no componente indicado.
+retorno: none
+observacoes: 
+Data: 23/MAI/2021
+Autor: 1415rr
+*/
+let elementoTela = window.document.getElementById(idSaida);
+   elementoTela.innerHTML = texto;
+   debugConsoleLog ('tela.js', fTelaImprime, idSaida, texto);
+};
+
+
+function fTelaControlaSaida (...lArrParams) {
+/*
+objetivo: ser a funcao que controla todas as saidas para cada elemento da tela.
+retorno: none
+observacoes: 
+Data: 23/MAI/2021
+Autor: 1415rr
+*/
+
+   let lsTexto = ''
+   lsIdLocalSaida = '';
 
    switch (lArrParams[0]) {
-      case "ABERTURA": 
+      case 'ABERTURA': 
          lsTexto = 'Bem-vido ao reinado de Sumer, Vossa Majestade. ' +
-            'Estamos ao seu dispor para que o reinado seja longo e próspero';         
+            'Estamos ao seu dispor para que o reinado seja longo e próspero';     
+         lsIdLocalSaida =  'id-div-sai2';
          break;
       
-      case "INICIO-DO-ANO":
+      case 'INICIO-DO-ANO':
          lsTexto = `Vamos começar o ano ${lArrParams[1]}. Vou listar as posses do reino.`;
          break;
       
-      case "PAINEL":
+      case 'PAINEL':
          lsTexto = lArrParams[1] ;
+         lsIdLocalSaida =  'id-div-sai1';
          break;
 
+      case 'STATUS':
+         lsTexto = lArrParams[1] ;
+         lsIdLocalSaida =  'id-div-sai2';
+         break;
+   
+   
       Default:
-         lsTexto = "fTelaExibe - Nao Cadastrada: " + lArrParams[0];
+         lsTexto = 'fTelaExibe - Nao Cadastrada: ' + lArrParams[0];
          break;
       
    }
 
-   fTelaImprime (lsTexto);
+   fTelaImprime (lsIdLocalSaida, lsTexto);
 };
 
-function fTelaImprime (sTexto) {
-   console.log (sTexto);
+
+function fTelaExibePainel (){
+/*
+objetivo: exibe o painel corrente
+retorno: none
+observacoes: 
+Data: 23/MAI/2021
+Autor: 1415rr
+*/
+   let lSumerObjItem = sumerObjItem,
+   lsSaidaPainel = '';
+   debugConsoleLog ('tela.js', 'fTelaExibePainel', "lSumerObjItem", lSumerObjItem);
+   debugConsoleLog ('tela.js', 'fTelaExibePainel', "lSumerObjItem.itens", lSumerObjItem.itens);
+
+   let a="";
+   for (a of lSumerObjItem.itens) {
+      lsSaidaPainel += `${a.nome} - ${a.quantidade} ${a.unidade}- $${a.preco}<br>`;
+   };
+   fTelaControlaSaida ('PAINEL', lsSaidaPainel);
+};
+
+function fCliqueOkTelaPrincipal(){
+   let lTexto = "";
+   lTexto = window.document.getElementById ("id-txt-ent1").value;
+
+   fTelaControlaSaida ('STATUS', lTexto);
+
 };

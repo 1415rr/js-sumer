@@ -1,21 +1,14 @@
+debugConsoleLog ("princ.js");
 
-fTelaExibe ("ABERTURA");
+fTelaControlaSaida ("ABERTURA");
+fSumerInicializaObj();
+fSumerInicializaObjQuantidade();
+fSumerInicializaObjPreco();
+fTelaExibePainel();
 
 for (gAnocorrente=1; gAnocorrente <= kTotalAnos; gAnocorrente++) {
-   garrItem = fCarregaItens();
-   garrItem = fDefinePrecos (garrItem);
-   
-   fTelaExibe ("INICIO-DO-ANO", gAnocorrente);
 
-   fTelaExibe ("PAINEL", garrItem);
-
+   //loop interno - aguarda comando... deopis, processa.
+   // fora do loop, faz o processamento do ano.
 
 };
-
-kObj.nome = 'rafael';
-fTelaImprime (kObj);
-kObj.sobrenome = 'reis';
-fTelaImprime (kObj);
-kObj.sobrenome = 'moreira';
-fTelaImprime (kObj);
-
