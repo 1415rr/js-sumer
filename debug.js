@@ -16,4 +16,15 @@ let lDebug = true;
    }
 };
 }
-debugConsoleLog ("debug.js.html");
+debugConsoleLog ("debug.js");
+
+let globalObj = {};
+console.log ("globalObj antes", globalObj);
+
+function fSetaLocal(){
+   let localObj = globalObj;
+   localObj.nome = "Rafael";
+   console.log ("localObj ", localObj);
+};
+
+fSetaLocal();

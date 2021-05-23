@@ -10,7 +10,6 @@ Autor: 1415rr
 */
 let elementoTela = window.document.getElementById(idSaida);
    elementoTela.innerHTML = texto;
-   debugConsoleLog ('tela.js', fTelaImprime, idSaida, texto);
 };
 
 
@@ -33,10 +32,6 @@ Autor: 1415rr
          lsIdLocalSaida =  'id-div-sai2';
          break;
       
-      case 'INICIO-DO-ANO':
-         lsTexto = `Vamos começar o ano ${lArrParams[1]}. Vou listar as posses do reino.`;
-         break;
-      
       case 'PAINEL':
          lsTexto = lArrParams[1] ;
          lsIdLocalSaida =  'id-div-sai1';
@@ -46,6 +41,11 @@ Autor: 1415rr
          lsTexto = lArrParams[1] ;
          lsIdLocalSaida =  'id-div-sai2';
          break;
+
+      case 'INICIO-DO-ANO':
+         lsTexto = `Vamos começar o ano ${lArrParams[1]}. Vou listar as posses do reino.`;
+         break;
+   
    
    
       Default:
@@ -68,8 +68,6 @@ Autor: 1415rr
 */
    let lSumerObjItem = sumerObjItem,
    lsSaidaPainel = '';
-   debugConsoleLog ('tela.js', 'fTelaExibePainel', "lSumerObjItem", lSumerObjItem);
-   debugConsoleLog ('tela.js', 'fTelaExibePainel', "lSumerObjItem.itens", lSumerObjItem.itens);
 
    let a="";
    for (a of lSumerObjItem.itens) {

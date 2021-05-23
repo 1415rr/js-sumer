@@ -23,6 +23,8 @@ let  sumerObjItem = {
       return lRetorno;
    },
 };
+debugConsoleLog ("sumer.js", "acabei de inicializar let", "sumerObjItem", sumerObjItem);
+
 
 function fSumerInicializaObj() {
    /*
@@ -36,8 +38,11 @@ function fSumerInicializaObj() {
    Data: 23/MAI/2021
    Autor: 1415rr
    */
+   debugConsoleLog ("fSumerInicializaObj", "antes let", "sumerObjItem", sumerObjItem);
    let i=0,
-      lSumerObjItem = sumerObjItem;
+   lSumerObjItem = sumerObjItem;
+   debugConsoleLog ("fSumerInicializaObj", "depois let", "sumerObjItem", sumerObjItem);
+   debugConsoleLog ("fSumerInicializaObj", "depois let", "lSumerObjItem", lSumerObjItem);
 
    function lfSetItem (indice, nomeIndice, pNome, pUnidade){
       lSumerObjItem.indice[nomeIndice] = indice;
@@ -69,8 +74,6 @@ function fSumerInicializaObjQuantidade() {
 
    function lfSetQuantidade (nomeIndice, valor){
       lSumerObjItem.fSetItem (lSumerObjItem.fGetIndex(nomeIndice), "quantidade", valor);
-      debugConsoleLog ("sumer.js", "lfSetQuantidade", "nomeIndice", nomeIndice, 
-      "lSumerObjItem", lSumerObjItem, "lSumerObjItem.fGetIndex" , lSumerObjItem.fGetIndex(nomeIndice) );
    };
 
    lfSetQuantidade ("ouro", 1000);
@@ -116,22 +119,12 @@ function fSumerInicializaObjPreco() {
       */
    lfSetPreco ("ferro", 4.4);
    lfSetPreco ("terra", 1.6);
-   lfSetPreco ("pessoas", 1.535);
+   lfSetPreco ("populacao", 1.535);
    lfSetPreco ("madeira", 3.33);
    lfSetPreco ("soldados", 60);
 
 };
 
-
-   function fDefinePrecos(arrItem) {
-
-      //arrItem[kArmas   ].decValor = ;
-      //arrItem[kColheita].decValor = ;
-      //arrItem[kPecuaria].decValor = ;
-   
-      return arrItem;
-      
-   }
 
 
 function fAleatorio(min, max) {

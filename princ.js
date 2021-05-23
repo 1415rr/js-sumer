@@ -1,10 +1,15 @@
 debugConsoleLog ("princ.js");
 
+{
 fTelaControlaSaida ("ABERTURA");
+
+debugConsoleLog ("antes inicializa", "sumerObjItem", sumerObjItem);
 fSumerInicializaObj();
+/* debugConsoleLog ("depois inicializa", "sumerObjItem", sumerObjItem);
 fSumerInicializaObjQuantidade();
 fSumerInicializaObjPreco();
-fTelaExibePainel();
+fTelaExibePainel(); */
+}
 
 for (gAnocorrente=1; gAnocorrente <= kTotalAnos; gAnocorrente++) {
 
