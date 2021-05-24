@@ -18,7 +18,7 @@ let lDebug = true;
 }
 debugConsoleLog ("debug.js");
 
-let globalObj = {};
+/* let globalObj = {};
 console.log ("globalObj antes", globalObj);
 
 function fSetaLocal(){
@@ -27,4 +27,11 @@ function fSetaLocal(){
    console.log ("localObj ", localObj);
 };
 
-fSetaLocal();
+fSetaLocal(); */
+
+let globalObj = {}
+console.log('globalObj ant', globalObj)
+let localObj = globalObj
+localObj.nome ="Rafael"
+console.log("globalObj", globalObj)
+console.log("localObj", localObj)

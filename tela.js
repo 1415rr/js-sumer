@@ -24,22 +24,27 @@ Autor: 1415rr
 
    let lsTexto = ''
    lsIdLocalSaida = '';
+   const kDivPainel = 'id-div-painel1',
+      kDivStatus = 'id-div-status1',
+      kDivInfos1 = 'id-div-infos1';
+
+
 
    switch (lArrParams[0]) {
       case 'ABERTURA': 
          lsTexto = 'Bem-vido ao reinado de Sumer, Vossa Majestade. ' +
             'Estamos ao seu dispor para que o reinado seja longo e próspero';     
-         lsIdLocalSaida =  'id-div-sai2';
+         lsIdLocalSaida =  kDivStatus;
          break;
       
       case 'PAINEL':
          lsTexto = lArrParams[1] ;
-         lsIdLocalSaida =  'id-div-sai1';
+         lsIdLocalSaida =  kDivPainel;
          break;
 
       case 'STATUS':
          lsTexto = lArrParams[1] ;
-         lsIdLocalSaida =  'id-div-sai2';
+         lsIdLocalSaida =  kDivInfos1;
          break;
 
       case 'INICIO-DO-ANO':
@@ -55,6 +60,7 @@ Autor: 1415rr
    }
 
    fTelaImprime (lsIdLocalSaida, lsTexto);
+
 };
 
 

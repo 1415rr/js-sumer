@@ -10,21 +10,46 @@
 
 	<br>
 	<br>
-	<div id=id-div-sai1>
+	<div id=id-div-painel1>
 		Div para exibicao dos itens.
+		<table id=id-tabela-painel>
+
+		</table>
 	</div>
 	<br>
 	<div id=id-div-ent1>
-		Div para input dos dados.
-		<br>
-		<input type="text" id="id-txt-ent1">
-		<button type="button" onclick="fCliqueOkTelaPrincipal()">OK</button>
+
+		<table>
+			<tr>
+			  <th><label for="operacao">Selecione a operacao:</label></th>
+			  <th><label for="id-txt-ent1">Div para input dos dados.</label></th>
+			</tr>
+			<tr>
+				<td>
+					<select name="operacao" id="operacao">
+						<option value="comprar">Comprar</option>
+						<option value="vender">Vender</option>
+						<option value="consultar">Consultar</option>
+						<option value="ano-novo">Terminar o ano	</option>
+					 </select>
+				</td>
+				<td>
+					<input type="text" id="id-txt-ent1">
+					<button type="button" onclick="fCliqueOkTelaPrincipal()">OK</button>
+				</td>
+			 </tr>
+		</table>
 	</div>
 	<br>
-	<div id=id-div-sai2>
+	<div id=id-div-infos1>
+		Div para exibicao das infos do andamento do jogo.
+	</div>
+	<br>
+	<div id=id-div-status1>
 		Div para exibicao dos status.
 	</div>
 	<br>
+
 
 	<script src="debug.js"></script>
 	<script src="tela.js"></script>
