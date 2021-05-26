@@ -5,6 +5,7 @@ fTelaControlaSaida ("ABERTURA");
 
 debugConsoleLog ("antes inicializa", "sumerObjItem", sumerObjItem);
 fSumerInicializaObj();
+fTestaTab();
 /* debugConsoleLog ("depois inicializa", "sumerObjItem", sumerObjItem);
 fSumerInicializaObjQuantidade();
 fSumerInicializaObjPreco();

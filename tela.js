@@ -89,3 +89,27 @@ function fCliqueOkTelaPrincipal(){
    fTelaControlaSaida ('STATUS', lTexto);
 
 };
+
+function fTestaTab(){
+   lObj = window.document.getElementById ("id-tabela-painel");
+   ls = 
+   "<tr> <td>1-1</td> <td>1-2</td> <td>1-3</td> </tr>" 
+   + "<tr> <td>2-1</td> <td>2-2</td> <td>2-3</td> </tr>"
+   + "<tr> <td>3-1</td> <td>3-2</td> <td>3-3</td> </tr>"
+   + "<tr> <td>4-1</td> <td>4-2</td> <td>4-3</td> </tr>";
+   lObj.innerHTML = ls;
+
+   lObj2 = document.createElement("TABLE");
+   lObj2.setAttribute("id", "id-tabela-painel2");
+   let linha = lObj2.insertRow(0);
+   let celula1 = linha.insertCell(0);
+   let celula2 = linha.insertCell(1);
+   let celula3 = linha.insertCell(2);
+   let celula4 = linha.insertCell(3);
+   celula4.innerHTML ="outra tabela";
+   celula2.innerHTML ="caramba!";
+   celula3.innerHTML ="é cachaca c*!";
+   document.body.appendChild(lObj2);
+
+   
+};
