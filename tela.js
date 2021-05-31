@@ -8,7 +8,7 @@ observacoes:
 Data: 23/MAI/2021
 Autor: 1415rr
 */
-let elementoTela = window.document.getElementById(idSaida);
+let elementoTela = fGetObjTela(idSaida);
    elementoTela.innerHTML = texto;
 };
 
@@ -82,11 +82,42 @@ Autor: 1415rr
    fTelaControlaSaida ('PAINEL', lsSaidaPainel);
 };
 
+// ? ---------------------------------------------------
+// ? ---------------------------------------------------
+// ? ---------------------------------------------------
 function fCliqueOkTelaPrincipal(){
-   let lTexto = "";
-   lTexto = window.document.getElementById ("id-txt-ent1").value;
+   let lTexto = fGetValueObjTela("id-txt-ent1");
+   let lOper = fGetValueObjTela("id-cbo-operacao");
+
+   lTexto = lOper + ' - ' + lTexto;
 
    fTelaControlaSaida ('STATUS', lTexto);
+
+   // fTelaImprimeDigitando2 ("1234567890");
+   // fTelaImprimeDigitando2 ("ABCDEFGHIJKLM");
+   let xTexto = "";
+   xTexto = `
+   objetivo: imprimir um texto com delay - como se o programa estivesse digitando em resposta ao usuário.
+   retorno: none
+   observacoes: 
+      fCaracteresPorMiliSegundo:
+         calcula o tempo para impressao de cada caractere.<br>
+         O tempo total de digitacao do texto é calculado antes da primeira chamada de impressao
+      fImprime 
+         imprime o caractere informado. usa a variavel <strong>lTextoSaida</strong> e espela a variável no innerHTML.
+         isto foi necessario, pois o innerHTML nao interpretava as tags html "digitadas" .
+         após imprimir, esta função chama o fImprimeProximo em um setTimeout.
+      fImprimeProximo 
+         é instanciado dentro de fImprime e chamada por setTimeout.
+         aponta para uma chamada fImprime com posicao +1, que ira chamar uma nova 
+         uma nova fImprimeProximo, recursivamente até terminar o string. 
+         <br>Data: 30/MAI/2021
+         <br>Autor: 1415rr
+      `;
+
+   fTelaImprimeDigitando(xTexto);
+
+  
 
 };
 
@@ -112,4 +143,66 @@ function fTestaTab(){
    document.body.appendChild(lObj2);
 
    
+};
+
+function fGetValueObjTela(nomeObj){
+   return fGetObjTela(nomeObj).value;
+};
+
+function fGetObjTela(nomeObj){
+   return window.document.getElementById (nomeObj);
+};
+
+
+
+
+// ? ---------------------------------------------------
+// ? ---------------------------------------------------
+// ? ---------------------------------------------------
+
+let fTelaImprimeDigitando = function (texto){
+/*
+objetivo: imprimir um texto com delay - como se o programa estivesse digitando em resposta ao usuário.
+retorno: none
+observacoes: 
+   fCaracteresPorMiliSegundo:
+      calcula o tempo para impressao de cada caractere.
+      O tempo total de digitacao do texto é calculado antes da primeira chamada de impressao
+   fImprime 
+      imprime o caractere informado. usa a variavel lTextoSaida e espela a variável no innerHTML.
+      isto foi necessario, pois o innerHTML nao interpretava as tags html "digitadas" .
+      após imprimir, esta função chama o fImprimeProximo em um setTimeout.
+   fImprimeProximo 
+      é instanciado dentro de fImprime e chamada por setTimeout.
+      aponta para uma chamada fImprime com posicao +1, que ira chamar uma nova 
+      uma nova fImprimeProximo, recursivamente até terminar o string. 
+FALTA: PARAMETRIZAR o campo em que a string vai sair.
+Data: 30/MAI/2021
+Autor: 1415rr
+*/
+
+   let lTextoSaida = "";
+
+   let fCaracteresPorMiliSegundo = function (texto, iTempoSaida){
+      debugConsoleLog('tempo - caractere', iTempoSaida / texto.length);
+      return (iTempoSaida / texto.length);
+   };
+
+
+   let fImprime = function (texto, pos, tempo){
+      lTextoSaida +=texto[pos++]
+      a = fGetObjTela ('id-div-infos1');
+      if (lTextoSaida[lTextoSaida.length-1]!=="<") {
+         a.innerHTML = lTextoSaida;
+      };
+      let fImprimeProximo = function (){
+         if (pos < texto.length ) {
+            fImprime(texto, pos, tempo);
+         }
+      };
+      setTimeout (fImprimeProximo, tempo );
+   }
+
+   let tempo = fCaracteresPorMiliSegundo(texto, 20000)
+   fImprime(texto, 0, tempo);
 };
