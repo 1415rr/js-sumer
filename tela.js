@@ -51,8 +51,6 @@ Autor: 1415rr
          lsTexto = `Vamos começar o ano ${lArrParams[1]}. Vou listar as posses do reino.`;
          break;
    
-   
-   
       Default:
          lsTexto = 'fTelaExibe - Nao Cadastrada: ' + lArrParams[0];
          break;
@@ -97,25 +95,16 @@ function fCliqueOkTelaPrincipal(){
    // fTelaImprimeDigitando2 ("ABCDEFGHIJKLM");
    let xTexto = "";
    xTexto = `
-   objetivo: imprimir um texto com delay - como se o programa estivesse digitando em resposta ao usuário.
-   retorno: none
-   observacoes: 
-      fCaracteresPorMiliSegundo:
-         calcula o tempo para impressao de cada caractere.<br>
-         O tempo total de digitacao do texto é calculado antes da primeira chamada de impressao
-      fImprime 
-         imprime o caractere informado. usa a variavel <strong>lTextoSaida</strong> e espela a variável no innerHTML.
-         isto foi necessario, pois o innerHTML nao interpretava as tags html "digitadas" .
-         após imprimir, esta função chama o fImprimeProximo em um setTimeout.
-      fImprimeProximo 
-         é instanciado dentro de fImprime e chamada por setTimeout.
-         aponta para uma chamada fImprime com posicao +1, que ira chamar uma nova 
-         uma nova fImprimeProximo, recursivamente até terminar o string. 
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nisi ut ullamcorper molestie. Praesent elementum, lacus id lacinia porttitor, lorem enim egestas mi, vitae euismod quam lacus quis risus. Donec scelerisque mi ut sagittis ultricies. Mauris accumsan ligula vel vehicula pretium. Aliquam iaculis est ac cursus vulputate. Aliquam consequat molestie justo, a vehicula dolor ullamcorper ut. Ut tincidunt diam at nulla feugiat faucibus. Donec at mi vel leo tincidunt condimentum sed at augue. Integer bibendum, orci suscipit finibus tincidunt, felis tortor rutrum metus, id tempor nisi massa lacinia tortor. 
+   <br><br>
+   Curabitur euismod suscipit enim sagittis tincidunt. Nunc tempor auctor pellentesque. Nulla in convallis metus, a cursus turpis. Donec facilisis eget eros non condimentum. Morbi sit amet varius risus. Ut pharetra tempor lectus, in fringilla leo ultricies ut. Curabitur vel purus id mauris vehicula laoreet in a odio.
+   <br><br>
+   Praesent scelerisque tellus at bibendum cursus. Fusce sit amet vehicula mauris. Pellentesque neque velit, iaculis ut facilisis sed, rhoncus vitae tellus. Donec elit urna, iaculis sed eros ac, venenatis ullamcorper libero. Proin porttitor finibus mauris mollis blandit. Aliquam ac nibh efficitur, luctus diam non, rhoncus nisl. Suspendisse mattis non turpis eget pharetra. Pellentesque tincidunt odio arcu, ac auctor dui pretium feugiat. Aliquam suscipit vehicula dignissim.
          <br>Data: 30/MAI/2021
          <br>Autor: 1415rr
       `;
 
-   fTelaImprimeDigitando(xTexto);
+      fTelaImprimeDigitando(xTexto, 'id-div-infos1' , fHablilita);
 
   
 
@@ -153,35 +142,45 @@ function fGetObjTela(nomeObj){
    return window.document.getElementById (nomeObj);
 };
 
+function fHablilita (param){
+   fGetObjTela('id-cbo-operacao').disabled = !param;
+   fGetObjTela('id-btn-ok-ent1').disabled = !param;
+};
 
 
-
-// ? ---------------------------------------------------
-// ? ---------------------------------------------------
-// ? ---------------------------------------------------
-
-let fTelaImprimeDigitando = function (texto){
+function fTelaImprimeDigitando(texto, sObjeto, fHablilita) {
 /*
 objetivo: imprimir um texto com delay - como se o programa estivesse digitando em resposta ao usuário.
 retorno: none
-observacoes: 
-   fCaracteresPorMiliSegundo:
-      calcula o tempo para impressao de cada caractere.
-      O tempo total de digitacao do texto é calculado antes da primeira chamada de impressao
-   fImprime 
-      imprime o caractere informado. usa a variavel lTextoSaida e espela a variável no innerHTML.
-      isto foi necessario, pois o innerHTML nao interpretava as tags html "digitadas" .
-      após imprimir, esta função chama o fImprimeProximo em um setTimeout.
-   fImprimeProximo 
-      é instanciado dentro de fImprime e chamada por setTimeout.
-      aponta para uma chamada fImprime com posicao +1, que ira chamar uma nova 
-      uma nova fImprimeProximo, recursivamente até terminar o string. 
-FALTA: PARAMETRIZAR o campo em que a string vai sair.
-Data: 30/MAI/2021
-Autor: 1415rr
+detalhes: 
+   lTextoSaida é uma variavel temporária, para que o innerHTML absorva as tags corretamente.
+      (quando eu incremento o innerHTML caracter p/caracter, ele considera as TAGs como texto corrido
+      ex: <br> não quebra linha, escreve a string "<br>", mesmo )
+   
+   fHablitaTrue é usada para ser parâmetro do setTimeout ao final da impressão.
+
+   fCaracteresPorMiliSegundo calcula quanto eu tenho de tempo para imprimir um caracter.
+
+   fImprime efetivamente imprime o caracter da posicao "pos" da string "texto". O ultimo 
+      parametro é o "tempo" já calculado que irá para setTimeout.
+      a concatenacao é feita em lTextoSaida e replicada 
+      para objSaida, se o caracter corrente não for "<".
+
+   fImprime Proximo existe apenas no contexto de fImprime e é chamada por setTimeOut, 
+      faz o incremento da posicao atual e chama a propria fImprime.
+      quando fImprime chega ao ult caractere "(++pos<len) else", ele
+      passa fHablitaTrue, no tempo do proximo caractere.
+
+   ! FAZER UM imprime linha???
+
+   Data: 31/MAI/2021
+   Autor: 1415rr
 */
 
    let lTextoSaida = "";
+   objSaida = fGetObjTela (sObjeto);
+
+   let fHablilitaTrue = function() { fHablilita(true) };
 
    let fCaracteresPorMiliSegundo = function (texto, iTempoSaida){
       debugConsoleLog('tempo - caractere', iTempoSaida / texto.length);
@@ -190,19 +189,22 @@ Autor: 1415rr
 
 
    let fImprime = function (texto, pos, tempo){
-      lTextoSaida +=texto[pos++]
-      a = fGetObjTela ('id-div-infos1');
+      lTextoSaida +=texto[pos]
       if (lTextoSaida[lTextoSaida.length-1]!=="<") {
-         a.innerHTML = lTextoSaida;
+         objSaida.innerHTML = lTextoSaida;
       };
       let fImprimeProximo = function (){
-         if (pos < texto.length ) {
+         if (++pos < texto.length ) {
             fImprime(texto, pos, tempo);
-         }
+         } else {
+            setTimeout (fHablilitaTrue, tempo );
+         };
       };
       setTimeout (fImprimeProximo, tempo );
    }
 
-   let tempo = fCaracteresPorMiliSegundo(texto, 20000)
+   let tempo = fCaracteresPorMiliSegundo(texto, 8000);
+   //let tempo = 4;
+   fHablilita(false);
    fImprime(texto, 0, tempo);
 };
