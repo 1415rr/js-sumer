@@ -80,9 +80,6 @@ Autor: 1415rr
    fTelaControlaSaida ('PAINEL', lsSaidaPainel);
 };
 
-// ? ---------------------------------------------------
-// ? ---------------------------------------------------
-// ? ---------------------------------------------------
 function fCliqueOkTelaPrincipal(){
    let lTexto = fGetValueObjTela("id-txt-ent1");
    let lOper = fGetValueObjTela("id-cbo-operacao");
@@ -91,22 +88,22 @@ function fCliqueOkTelaPrincipal(){
 
    fTelaControlaSaida ('STATUS', lTexto);
 
-   // fTelaImprimeDigitando2 ("1234567890");
-   // fTelaImprimeDigitando2 ("ABCDEFGHIJKLM");
-   let xTexto = "";
-   xTexto = `
-   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nisi ut ullamcorper molestie. Praesent elementum, lacus id lacinia porttitor, lorem enim egestas mi, vitae euismod quam lacus quis risus. Donec scelerisque mi ut sagittis ultricies. Mauris accumsan ligula vel vehicula pretium. Aliquam iaculis est ac cursus vulputate. Aliquam consequat molestie justo, a vehicula dolor ullamcorper ut. Ut tincidunt diam at nulla feugiat faucibus. Donec at mi vel leo tincidunt condimentum sed at augue. Integer bibendum, orci suscipit finibus tincidunt, felis tortor rutrum metus, id tempor nisi massa lacinia tortor. 
-   <br><br>
-   Curabitur euismod suscipit enim sagittis tincidunt. Nunc tempor auctor pellentesque. Nulla in convallis metus, a cursus turpis. Donec facilisis eget eros non condimentum. Morbi sit amet varius risus. Ut pharetra tempor lectus, in fringilla leo ultricies ut. Curabitur vel purus id mauris vehicula laoreet in a odio.
-   <br><br>
-   Praesent scelerisque tellus at bibendum cursus. Fusce sit amet vehicula mauris. Pellentesque neque velit, iaculis ut facilisis sed, rhoncus vitae tellus. Donec elit urna, iaculis sed eros ac, venenatis ullamcorper libero. Proin porttitor finibus mauris mollis blandit. Aliquam ac nibh efficitur, luctus diam non, rhoncus nisl. Suspendisse mattis non turpis eget pharetra. Pellentesque tincidunt odio arcu, ac auctor dui pretium feugiat. Aliquam suscipit vehicula dignissim.
-         <br>Data: 30/MAI/2021
-         <br>Autor: 1415rr
+   let xTextoString = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nisi ut ullamcorper molestie. Praesent elementum, lacus id lacinia porttitor, lorem enim egestas mi, vitae euismod quam lacus quis risus. Donec scelerisque mi ut sagittis ultricies. Mauris accumsan ligula vel vehicula pretium. Aliquam iaculis est ac cursus vulputate. Aliquam consequat molestie justo, a vehicula dolor ullamcorper ut. Ut tincidunt diam at nulla feugiat faucibus. Donec at mi vel leo tincidunt condimentum sed at augue. Integer bibendum, orci suscipit finibus tincidunt, felis tortor rutrum metus, id tempor nisi massa lacinia tortor. 
+   <br><br>   Curabitur euismod suscipit enim sagittis tincidunt. Nunc tempor auctor pellentesque. Nulla in convallis metus, a cursus turpis. Donec facilisis eget eros non condimentum. Morbi sit amet varius risus. Ut pharetra tempor lectus, in fringilla leo ultricies ut. Curabitur vel purus id mauris vehicula laoreet in a odio.
+   <br><br>   Praesent scelerisque tellus at bibendum cursus. Fusce sit amet vehicula mauris. Pellentesque neque velit, iaculis ut facilisis sed, rhoncus vitae tellus. Donec elit urna, iaculis sed eros ac, venenatis ullamcorper libero. Proin porttitor finibus mauris mollis blandit. Aliquam ac nibh efficitur, luctus diam non, rhoncus nisl. Suspendisse mattis non turpis eget pharetra. Pellentesque tincidunt odio arcu, ac auctor dui pretium feugiat. Aliquam suscipit vehicula dignissim.
+   <br>Data: 30/MAI/2021         <br>Autor: 1415rr
       `;
-
-      fTelaImprimeDigitando(xTexto, 'id-div-infos1' , fHablilita);
-
-  
+   let = xTextoArray = 
+   [`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nisi ut ullamcorper molestie. Praesent elementum, lacus id lacinia porttitor, lorem enim egestas mi, vitae euismod quam lacus quis risus. Donec scelerisque mi ut sagittis ultricies. Mauris accumsan ligula vel vehicula pretium. Aliquam iaculis est ac cursus vulputate. Aliquam consequat molestie justo, a vehicula dolor ullamcorper ut. Ut tincidunt diam at nulla feugiat faucibus. Donec at mi vel leo tincidunt condimentum sed at augue. Integer bibendum, orci suscipit finibus tincidunt, felis tortor rutrum metus, id tempor nisi massa lacinia tortor. 
+   `,`Curabitur euismod suscipit enim sagittis tincidunt. Nunc tempor auctor pellentesque. Nulla in convallis metus, a cursus turpis. Donec facilisis eget eros non condimentum. Morbi sit amet varius risus. Ut pharetra tempor lectus, in fringilla leo ultricies ut. Curabitur vel purus id mauris vehicula laoreet in a odio.
+   `,`Praesent scelerisque tellus at bibendum cursus. Fusce sit amet vehicula mauris. Pellentesque neque velit, iaculis ut facilisis sed, rhoncus vitae tellus. Donec elit urna, iaculis sed eros ac, venenatis ullamcorper libero. Proin porttitor finibus mauris mollis blandit. Aliquam ac nibh efficitur, luctus diam non, rhoncus nisl. Suspendisse mattis non turpis eget pharetra. Pellentesque tincidunt odio arcu, ac auctor dui pretium feugiat. Aliquam suscipit vehicula dignissim.
+   `,`Data: 30/MAI/2021
+   `,`Autor: 1415rr
+   `];
+   
+   //fTelaImprimeComEfeitos (xTextoString, 'id-div-infos1' , fHablilita);  
+   fTelaImprimeComEfeitos (xTextoArray, 'id-div-infos1' , fHablilita);  
+   //setTimeout (function (){fTelaImprimeComEfeitos (xTextoArray, 'id-div-infos1' , fHablilita);}, 2500);
 
 };
 
@@ -148,63 +145,66 @@ function fHablilita (param){
 };
 
 
-function fTelaImprimeDigitando(texto, sObjeto, fHablilita) {
+let fTelaImprimeComEfeitos = function (paramTexto, paramIdObjeto, fHablilita, iDelay=0) {
 /*
-objetivo: imprimir um texto com delay - como se o programa estivesse digitando em resposta ao usuário.
+objetivo: imprimir um texto com efeitos de delay 
+      - como se o programa estivesse digitando em resposta ao usuário   OU
+      - como se as linhas a serem impressas estivessem sendo processadas uma a uma.
+argumentos:
+   paramTexto - texto a imprimir. 
+      se string, imprime caracter um-a-um;
+      se array, imprime linha  uma-a-uma;
+   paramIdObjeto - string com o id do objeto de saida.
+   fHablilita - funcão que controla true/habilitar 
+      ou false/desabilitar os campos da tela.
+   iDelay - informa o delay para imprimir cada caracter ou linha.
+      se receber ZERO (preferível), uso a fCalculaDelayImpressoes para definir um 
+      tempo limite.
 retorno: none
-detalhes: 
-   lTextoSaida é uma variavel temporária, para que o innerHTML absorva as tags corretamente.
-      (quando eu incremento o innerHTML caracter p/caracter, ele considera as TAGs como texto corrido
-      ex: <br> não quebra linha, escreve a string "<br>", mesmo )
-   
-   fHablitaTrue é usada para ser parâmetro do setTimeout ao final da impressão.
-
-   fCaracteresPorMiliSegundo calcula quanto eu tenho de tempo para imprimir um caracter.
-
-   fImprime efetivamente imprime o caracter da posicao "pos" da string "texto". O ultimo 
-      parametro é o "tempo" já calculado que irá para setTimeout.
-      a concatenacao é feita em lTextoSaida e replicada 
-      para objSaida, se o caracter corrente não for "<".
-
-   fImprime Proximo existe apenas no contexto de fImprime e é chamada por setTimeOut, 
-      faz o incremento da posicao atual e chama a propria fImprime.
-      quando fImprime chega ao ult caractere "(++pos<len) else", ele
-      passa fHablitaTrue, no tempo do proximo caractere.
-
-   ! FAZER UM imprime linha???
-
-   Data: 31/MAI/2021
+detalhes: Não trata concorrência (ao chamar duas vezes em seguida, vale apenas a última, pois 
+   o campo de saída não concatena, apenas imprime o buffer). Não vou investir nisso. algum 
+   "DP"/design pattern deve ser especifico para isso.
+  
+   Data: 03/JUN/2021
    Autor: 1415rr
 */
 
-   let lTextoSaida = "";
-   objSaida = fGetObjTela (sObjeto);
 
-   let fHablilitaTrue = function() { fHablilita(true) };
+   let lBufferParaInnerHTML = "",
+      objSaida = fGetObjTela (paramIdObjeto),
+      iQuantidadeLinhasParaImprimir = Array.isArray(paramTexto) ? paramTexto.length : 1  ;
 
-   let fCaracteresPorMiliSegundo = function (texto, iTempoSaida){
-      debugConsoleLog('tempo - caractere', iTempoSaida / texto.length);
-      return (iTempoSaida / texto.length);
+   let fImprimePosicaoAtualEFazRecursiva = (texto, iPosicaoAtual, iDelay) => {
+      lBufferParaInnerHTML +=paramTexto[iPosicaoAtual];
+      bCanRefreshInnerHTML = true;
+      
+      if (iQuantidadeLinhasParaImprimir > 1) { lBufferParaInnerHTML+="<br>";  // separa as linhas
+      } else {
+         //provoco o tratamento de tags pelo innerHTML antes de imprimir o "<"
+         if (paramTexto[iPosicaoAtual]==="<") {bCanRefreshInnerHTML = false};
+      };
+      
+      // atualizo a tela.
+      if (bCanRefreshInnerHTML) {objSaida.innerHTML = lBufferParaInnerHTML};
+
+      //ainda tenho mais a imprimir ?
+      if (iPosicaoAtual < paramTexto.length-1) {
+      
+         // ? todo o esforço da função foi para executar a linha abaixo recursivamente.
+         setTimeout (function (){fImprimePosicaoAtualEFazRecursiva (texto, ++iPosicaoAtual, iDelay)}, iDelay);
+      
+      } else {
+         
+         //já imprimi a ultima posicao, libero os campos.
+         setTimeout (function (){fHablilita(true)}, iDelay);
+      };
    };
 
+   let fCalculaDelayImpressoes = (iQtdChamadas, iTempoLimite) => (iTempoLimite / iQtdChamadas);
 
-   let fImprime = function (texto, pos, tempo){
-      lTextoSaida +=texto[pos]
-      if (lTextoSaida[lTextoSaida.length-1]!=="<") {
-         objSaida.innerHTML = lTextoSaida;
-      };
-      let fImprimeProximo = function (){
-         if (++pos < texto.length ) {
-            fImprime(texto, pos, tempo);
-         } else {
-            setTimeout (fHablilitaTrue, tempo );
-         };
-      };
-      setTimeout (fImprimeProximo, tempo );
-   }
+   if (!iDelay) { iDelay = fCalculaDelayImpressoes(paramTexto.length, 4000) };
 
-   let tempo = fCaracteresPorMiliSegundo(texto, 8000);
-   //let tempo = 4;
-   fHablilita(false);
-   fImprime(texto, 0, tempo);
+   fHablilita(false)
+   fImprimePosicaoAtualEFazRecursiva(paramTexto, iPosicaoAtual=0, iDelay);
+
 };
