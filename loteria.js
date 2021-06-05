@@ -5,64 +5,36 @@
                                              (6a casa)
 */
 
-const kQtdApostas      = 45 *1000 *1000 ;
-const kQtdAcertosCorte = 6;
-const kQtdEtapas       = 1;
-
-
-let fSelecionaVolante = (min, max, qtd) => {
-   let arrRetorno =[];
-   let iNumeroSorteado;
-
-   for (let i=0; i<qtd ;i++) {
-      do {
-         iNumeroSorteado = getRandomInt (min, max+1);
-   } while (arrRetorno.indexOf(iNumeroSorteado) >= 0) ;
-      
-      arrRetorno[i] = iNumeroSorteado;
-   }
-
-   return arrRetorno;
-};
-
-let fComparaVolantes = (premiado, aposta) => {
-   let totalAcertos = 0;
-   premiado.forEach(
-      function (e, i, arr) {
-         totalAcertos += !!(aposta.indexOf(e)+1);
-      }
-   );
-   return totalAcertos;
-};
-
-let fComparaVolantesDetalhado = (premiado, aposta) => {
-   let editado = aposta.slice(),
-      posicaoEncontrou;
-
-   editado.forEach(function (e, i, arr) {editado[i] = ` ${e} `});
-
-   premiado.forEach(
-      function (e, i, arr) {
-         posicaoEncontrou = aposta.indexOf(e);
-         if (posicaoEncontrou>-1) {
-            editado[posicaoEncontrou] = `!${e}!`;
-         };
+function fLoteria(){
+   const kQtdApostas      = 45 *1000;// *1000 ;
+   const kQtdAcertosCorte = 6;
+   const kQtdEtapas       = 1;
+   let   lArrayObjetosDasFaixaDeAcertos = [];
+   ['ZERO', 'Uno', 'Duque', 'Terno', 'Quadra', 'Quina', 'SENA'].forEach(
+      function (nome, i, arr) {lArrayObjetosDasFaixaDeAcertos[i] = {
+         nome, qtdAcumulada:0, idPrimeiroVolante:0, sTextoPrimeiroVolante:'' } //curly do objeto.
       } 
    );
+   let arrayVolantePremiado = fCriaVolante (min=1, max=60, qtd=6);
+   let arrayVolanteAposta = [];
+   let arrayVolantesAcertos = [];
+   let objetoAcertos = {quantidade, stringExibicao};
 
-   return editado;
-};
+// parei aqui.   objetoAcertos vai precisar virar um array para as saidas acima do corte.
+// tbm sera usado para receber fComparaVolanteApostaComPremiado.
 
-function fLoteria(){
-   let arrVolantePremiado = fSelecionaVolante (min=1, max=60, qtd=6);
-   let volanteAposta = [];
-   let selecionados = [];
-   let resultados = [];
-   let iLona=iUno=iDuque=iTerno=iQuadra=iQuina=iSena=0;
-   
-   
+
    let fInternaComparacaoVolantes = (i) => {
-      resultados[i] = fComparaVolantes (arrVolantePremiado, volanteAposta[i]);
+      let qtdAcertos, stringExibicaoAcertos;
+      [qtdAcertos, stringExibicaoAcertos] = fComparaVolanteApostaComPremiado (arrayVolanteAposta, arrayVolantePremiado );
+      if (lArrayObjetosDasFaixaDeAcertos[qtdAcertos].qtdAcumulada++ ===0) {
+         lArrayObjetosDasFaixaDeAcertos[qtdAcertos].idPrimeiroVolante = i;
+         lArrayObjetosDasFaixaDeAcertos[qtdAcertos].sTextoPrimeiroVolante = stringExibicaoAcertos;
+      };
+      if (kQtdAcertosCorte <= qtdAcertos) {arrayVolantesAcertos[arrayVolantesAcertos.length] = [qtdAcertos, stringExibicaoAcertos]};
+
+      [quantidadeEncontrados, volanteFormatado.join(' - ')];
+      resultados[i] = fComparaVolanteApostaComPremiado (volanteAposta[i], arrVolantePremiado );
       switch (resultados[i]) {
          case 0:{ iLona++; break; }
          case 1:{ iUno++; break; }
@@ -159,4 +131,37 @@ function fSeparaMilhar (numero, sThousandSeparator = "."){
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
-    
+
+   function fCriaVolante (min, max, qtd) {
+      let arrRetorno =[];
+      let iNumeroSorteado;
+   
+      for (let i=0; i<qtd ;i++) {
+         do {
+            iNumeroSorteado = getRandomInt (min, max+1);
+      } while (arrRetorno.indexOf(iNumeroSorteado) >= 0) ;
+         
+         arrRetorno[i] = iNumeroSorteado;
+      }
+   
+      return arrRetorno;
+   };
+   
+   function fComparaVolanteApostaComPremiado (volanteAposta, volantePremiado ) {
+      let volanteApostaFormatado = [],
+         posicaoEncontrou = 0,
+         quantidadeEncontrados = 0;
+   
+      volanteAposta.forEach(function (e, i, arr) {volanteFormatado[i] = ` ${e} `});
+   
+      volantePremiado.forEach(
+         function (e, i, arr) {
+            posicaoEncontrou = aposta.indexOf(e);
+            if (posicaoEncontrou>-1) {
+               quantidadeEncontrados++;
+               volanteFormatado[posicaoEncontrou] = `!${e}!`;
+            };
+         } 
+      );
+      return [quantidadeEncontrados, volanteFormatado.join(' - ')];
+   };
