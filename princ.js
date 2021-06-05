@@ -1,6 +1,6 @@
 debugConsoleLog ("princ.js");
 
-{
+if (false) {
 fTelaControlaSaida ("ABERTURA");
 
 debugConsoleLog ("antes inicializa", "sumerObjItem", sumerObjItem);
@@ -18,3 +18,5 @@ for (gAnocorrente=1; gAnocorrente <= kTotalAnos; gAnocorrente++) {
    // fora do loop, faz o processamento do ano.
 
 };
+
+fLoteria();
