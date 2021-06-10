@@ -5,12 +5,69 @@
                                              (6a casa)
 */
 
+function fLoteria (){
+   fSimulaLoteria (  quantidadeApostas = 100,
+                     limiteMinimoDeAcertosParaListar = 3, // lista quem fez terno ou mais
+                     numeroMinimoDoSorteio = 01, // mega-sena = 1 a 60
+                     numeroMaximoDoSorteio = 60, // mega-sena = 1 a 60
+                     quantidadeDezenasVolantePremiado = 6, // mega-sena sao 6 dezenas premiadas
+                     quantidadeDezenasVolanteApostas = 7); // Os volantes de megasena permitem apostas de 6 a 10 dezenas)
+};
+
+function fSimulaLoteria (quantidadeApostas, listarAcertosAPartirDe, 
+   numeroMinimoDoSorteio, numeroMaximoDoSorteio, 
+   quantidadeDezenasVolantePremiado, quantidadeDezenasVolanteApostas ){
+      /* exemplo de chamada para  testar mega sena com  100  volantes 
+      de apostas de 7 dezenas com listando vencedores terno ou superior: 
+      fSimulaLoteria (quantidadeApostas = 100,
+                     limiteMinimoDeAcertosParaListar = 3, //terno
+                     numeroMinimoDoSorteio = 01, // mega-sena = 1 a 60
+                     numeroMaximoDoSorteio = 60, // mega-sena = 1 a 60
+                     quantidadeDezenasVolantePremiado = 6, // mega-sena sao 6 dezenas premiadas
+                     quantidadeDezenasVolanteApostas = 7); // Os volantes de megasena permitem apostas de 6 a 10 dezenas)
+      */
+      let   lArrayQuantidadeDeAcertos = [];
+      ['ZERO', 'Uno', 'Duque', 'Terno', 'Quadra', 'Quina', 'Sena', 'Sétoma', 'Ótona', 'Nóvona', 'Décona'].forEach(
+         function (nome, i, arr) {lArrayQuantidadeDeAcertos[i] = {
+            nome, qtdAcumulada:0, idPrimeiroVolante:0, sTextoPrimeiroVolante:'' } //curly do objeto.
+         };
+      );
+      let arrayVolantePremiado = fCriaVolante (min=numeroMinimoDoSorteio, max=numeroMaximoDoSorteio, qtd=quantidadeDezenasVolantePremiado);
+      let arrayVolanteAposta = [];
+      let arrayVolantesAcertos = [];
+      let objVolanteConferido = {quantidadeAcertos, stringExibicao};
+
+      let fInternaComparacaoVolantes = (i) => {
+         objVolanteConferido = fComparaVolanteApostaComPremiado (arrayVolanteAposta, arrayVolantePremiado );
+         if   (lArrayQuantidadeDeAcertos [objVolanteConferido.quantidadeAcertos].qtdAcumulada++ ===0) {
+            lArrayQuantidadeDeAcertos [objVolanteConferido.quantidadeAcertos].idPrimeiroVolante = i;
+            lArrayQuantidadeDeAcertos [objVolanteConferido.quantidadeAcertos].sTextoPrimeiroVolante = objVolanteConferido.stringExibicao;
+         };
+      }if (limiteMinimoDeAcertosParaListar <= objVolanteConferido.quantidadeAcertos) {arrayVolantesAcertos[arrayVolantesAcertos.length] = objVolanteConferido};
+   
+         [quantidadeEncontrados, volanteFormatado.join(' - ')];
+         resultados[i] = fComparaVolanteApostaComPremiado (volanteAposta[i], arrVolantePremiado );
+         switch (resultados[i]) {
+            case 0:{ iLona++; break; }
+            case 1:{ iUno++; break; }
+            case 2:{ iDuque++; break; }
+            case 3:{ iTerno++; break; }
+            case 4:{ iQuadra++; break; }
+            case 5:{ iQuina++; break; }
+            case 6:{ iSena++; break; }
+         };
+         if (resultados[i] >= kQtdAcertosCorte) {selecionados[[selecionados.length]] = i};
+      };
+
+                  
+   };
+
 function fLoteria(){
    const kQtdApostas      = 45 *1000;// *1000 ;
    const kQtdAcertosCorte = 6;
    const kQtdEtapas       = 1;
    let   lArrayObjetosDasFaixaDeAcertos = [];
-   ['ZERO', 'Uno', 'Duque', 'Terno', 'Quadra', 'Quina', 'SENA'].forEach(
+   ['ZERO', 'Uno', 'Duque', 'Terno', 'Quadra', 'Quina', 'Sena', 'Sétoma', 'Ótona', 'Nóvona', 'Décona'].forEach(
       function (nome, i, arr) {lArrayObjetosDasFaixaDeAcertos[i] = {
          nome, qtdAcumulada:0, idPrimeiroVolante:0, sTextoPrimeiroVolante:'' } //curly do objeto.
       } 
@@ -19,6 +76,29 @@ function fLoteria(){
    let arrayVolanteAposta = [];
    let arrayVolantesAcertos = [];
    let objetoAcertos = {quantidade, stringExibicao};
+
+let fInternaComparacaoVolantes = (i) => {
+      let qtdAcertos, stringExibicaoAcertos;
+      [qtdAcertos, stringExibicaoAcertos] = fComparaVolanteApostaComPremiado (arrayVolanteAposta, arrayVolantePremiado );
+      if (lArrayObjetosDasFaixaDeAcertos[qtdAcertos].qtdAcumulada++ ===0) {
+         lArrayObjetosDasFaixaDeAcertos[qtdAcertos].idPrimeiroVolante = i;
+         lArrayObjetosDasFaixaDeAcertos[qtdAcertos].sTextoPrimeiroVolante = stringExibicaoAcertos;
+      };
+      if (kQtdAcertosCorte <= qtdAcertos) {arrayVolantesAcertos[arrayVolantesAcertos.length] = [qtdAcertos, stringExibicaoAcertos]};
+
+      [quantidadeEncontrados, volanteFormatado.join(' - ')];
+      resultados[i] = fComparaVolanteApostaComPremiado (volanteAposta[i], arrVolantePremiado );
+      switch (resultados[i]) {
+         case 0:{ iLona++; break; }
+         case 1:{ iUno++; break; }
+         case 2:{ iDuque++; break; }
+         case 3:{ iTerno++; break; }
+         case 4:{ iQuadra++; break; }
+         case 5:{ iQuina++; break; }
+         case 6:{ iSena++; break; }
+      };
+      if (resultados[i] >= kQtdAcertosCorte) {selecionados[[selecionados.length]] = i};
+   };
 
 // parei aqui.   objetoAcertos vai precisar virar um array para as saidas acima do corte.
 // tbm sera usado para receber fComparaVolanteApostaComPremiado.
