@@ -26,16 +26,45 @@ function fSimulaLoteria (quantidadeApostas, listarAcertosAPartirDe,
                      quantidadeDezenasVolantePremiado = 6, // mega-sena sao 6 dezenas premiadas
                      quantidadeDezenasVolanteApostas = 7); // Os volantes de megasena permitem apostas de 6 a 10 dezenas)
       */
-      let   lArrayQuantidadeDeAcertos = [];
-      ['ZERO', 'Uno', 'Duque', 'Terno', 'Quadra', 'Quina', 'Sena', 'Sétoma', 'Ótona', 'Nóvona', 'Décona'].forEach(
-         function (nome, i, arr) {lArrayQuantidadeDeAcertos[i] = {
-            nome, qtdAcumulada:0, idPrimeiroVolante:0, sTextoPrimeiroVolante:'' } //curly do objeto.
-         };
-      );
-      let arrayVolantePremiado = fCriaVolante (min=numeroMinimoDoSorteio, max=numeroMaximoDoSorteio, qtd=quantidadeDezenasVolantePremiado);
-      let arrayVolanteAposta = [];
-      let arrayVolantesAcertos = [];
+      let mapaQuantidadeDeAcertos = carregaMapaQuantidadeDeAcertos();
+      let volantePremiado = criaVolante (min=numeroMinimoDoSorteio, 
+                                          max=numeroMaximoDoSorteio, 
+                                          qtd=quantidadeDezenasVolantePremiado);
       let objVolanteConferido = {quantidadeAcertos, stringExibicao};
+
+      let conferencia = {
+         acertos:[],
+         sorteados:[],
+         confereVolantes (volantePremiado, volanteAposta) {
+            volantePremiado.forEach (
+               function (e, i, arr) {
+                  //aqui....
+               }
+
+
+            )
+
+         },
+
+
+      }
+      /*
+      conferencia
+      for de numero tentativas
+         cria volante
+         mapaAcertos.contabiliza acertos
+         
+      def mapaAcertos
+      arrayAcertos[] {
+         nomeDisplay
+         num volante primeira ocorrencia
+         volante primeira ocorrencia
+      }
+      arraySorteados
+      confereVolantes
+       */
+
+      let arrayVolanteAposta, arrayVolantesAcertos;
 
       let fInternaComparacaoVolantes = (i) => {
          objVolanteConferido = fComparaVolanteApostaComPremiado (arrayVolanteAposta, arrayVolantePremiado );
@@ -244,4 +273,14 @@ function fSeparaMilhar (numero, sThousandSeparator = "."){
          } 
       );
       return [quantidadeEncontrados, volanteFormatado.join(' - ')];
+   };
+
+
+   function carregaMapaQuantidadeDeAcertos(){
+      let   mapaQuantidadeDeAcertos = [];
+      ['ZERO', 'Uno', 'Duque', 'Terno', 'Quadra', 'Quina', 'Sena', 'Sétoma', 'Ótona', 'Nóvona', 'Décona'].forEach(
+         function (nome, i, arr) {mapaQuantidadeDeAcertos[i] = {
+            nome, qtdAcumulada:0, idPrimeiroVolante:0, sTextoPrimeiroVolante:'' } //curly do objeto.
+         };
+      );
    };
