@@ -19,4 +19,4 @@ for (gAnocorrente=1; gAnocorrente <= kTotalAnos; gAnocorrente++) {
 
 };
 
-fLoteria();
+fMegaSena();
