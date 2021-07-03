@@ -7,8 +7,8 @@ debugConsoleLog ('loteria.js');
 */
 
 function fMegaSena (){
-   fSimulaLoteria (  //quantidadeApostas = 50001313,
-                     quantidadeApostas = 100,
+   fSimulaLoteria (  quantidadeApostas = 50001313,
+                     //quantidadeApostas = 100,
                      limiteMinimoDeAcertosParaListar = 3, // lista quem fez terno ou mais
                      numeroMinimoDoSorteio = 01, // mega-sena = 1 a 60
                      numeroMaximoDoSorteio = 60, // mega-sena = 1 a 60
@@ -17,7 +17,8 @@ function fMegaSena (){
 };
 
 //prox etapas:
-// corrigir o total de apostas
+// corrigir o total de apostas - ok
+// marcacaoDosAcertosPrimeiraAposta - ok
 // colocar o percentual das quantidades
 // colocar o ranking dos melhores pontos (selecionado ou automatico - melhor colocacao ex: todas as quinas se nao tiver nenhuma sena)
 // formatar a saida
@@ -43,32 +44,24 @@ function fSimulaLoteria (quantidadeApostas,
       let volanteAposta=[];
       let volantePremiado = criaVolante (min=numeroMinimoDoSorteio, 
                            max=numeroMaximoDoSorteio, 
-                           qtd=quantidadeDezenasVolantePremiado);                  
-      let marcacaoDosAcertos=[], quantidadeAcertos;
+                           qtd=quantidadeDezenasVolantePremiado);
+   
 
-      faixas = inicializaFaixas(quantidadeDezenasVolantePremiado);
+
+      faixas = inicializaFaixas(quantidadeDezenasVolantePremiado, quantidadeDezenasVolanteApostas);
       for (let contadorVolanteAposta = 1; contadorVolanteAposta<=quantidadeApostas; contadorVolanteAposta++) {
 
          let quantidadeDezenasVolanteAposta = quantidadeDezenasVolantePremiado;
          volanteAposta = criaVolante (min=numeroMinimoDoSorteio, 
                                        max=numeroMaximoDoSorteio, 
-                                       qtd=quantidadeDezenasVolanteAposta); 
+                                       qtd=quantidadeDezenasVolanteApostas); 
 
-         let conferenciaVolantes = confereVolantes (volantePremiado, volanteAposta, contadorVolanteAposta);
+         let marcacaoDosAcertos = confereVolantes (volantePremiado, volanteAposta);
 
-         quantidadeAcertos = conferenciaVolantes.quantidadeAcertos; 
-
-         faixas = contabilizaAcertos (contadorVolanteAposta, volanteAposta, quantidadeAcertos, faixas.slice()) ;
-
-         if (faixas[quantidadeAcertos].quantidadeOcorrencias ===  1) {
-            debugConsoleLog ( 'fSimulaLoteria',
-            'contadorVolanteAposta',contadorVolanteAposta,
-            'quantidadeAcertos',quantidadeAcertos,
-            'marcacaoDosAcertos[quantidadeAcertos]',marcacaoDosAcertos[quantidadeAcertos],
-            );
-   
-            marcacaoDosAcertos[quantidadeAcertos] = conferenciaVolantes.marcacaoDosAcertos
-         };
+         faixas = contabilizaAcertos (contadorVolanteAposta, 
+                                       volanteAposta, 
+                                       faixas.slice(),
+                                       marcacaoDosAcertos) ;
 
          let decideImprimirParcial = () => (contadorVolanteAposta%(parseInt(quantidadeApostas/10)) === 0 );
          let executaImprimirParcial = () => {
@@ -79,10 +72,7 @@ function fSimulaLoteria (quantidadeApostas,
 
       }; //for contadorVolanteAposta
 
-      debugConsoleLog ( 'exibeResultados - antes',
-      'marcacaoDosAcertos',marcacaoDosAcertos,
-      );
-         exibeResultados (volantePremiado, volanteAposta, marcacaoDosAcertos, faixas);
+         exibeResultados (volantePremiado, volanteAposta, faixas);
 
 
       function criaVolante (min, max, qtd) {
