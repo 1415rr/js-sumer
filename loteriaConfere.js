@@ -30,6 +30,15 @@ function inicializaFaixas(limite=10, quantidadeDezenasVolanteApostas=6){
       };  //if
       faixas[faixaDeAcerto].quantidadeOcorrencias++;
 
+/* parei aqui:
+fazer uma funcao maiorfaixapremiada
+   reduce em faixas para retornar a maior premiada
+se a faixa atual for a maior premiada:
+      funcao que acrescenta volanteAposta a faixas[faixaDeAcerto]
+se a quantidadeOcorrencias ==1 ( primeira ocorrencia ), apagar volanteAposta da faixa anterior (ZERO nao tem faixa anterior). 
+      funcao para isso? sim.
+ */
+
       return faixas;
      }; //contabilizaAcertos
 

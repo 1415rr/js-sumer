@@ -7,7 +7,8 @@ debugConsoleLog ('loteria.js');
 */
 
 function fMegaSena (){
-   fSimulaLoteria (  quantidadeApostas = 50001313,
+
+   fSimulaLoteria (  quantidadeApostas = 57 * 1000 *1000,
                      //quantidadeApostas = 100,
                      limiteMinimoDeAcertosParaListar = 3, // lista quem fez terno ou mais
                      numeroMinimoDoSorteio = 01, // mega-sena = 1 a 60
@@ -19,9 +20,9 @@ function fMegaSena (){
 //prox etapas:
 // corrigir o total de apostas - ok
 // marcacaoDosAcertosPrimeiraAposta - ok
-// colocar o percentual das quantidades
-// colocar o ranking dos melhores pontos (selecionado ou automatico - melhor colocacao ex: todas as quinas se nao tiver nenhuma sena)
-// formatar a saida
+// colocar o percentual das quantidades - ok
+// formatar a saida - ok
+// --> colocar o ranking dos melhores pontos (selecionado ou automatico - melhor colocacao ex: todas as quinas se nao tiver nenhuma sena)
 
 
 function fSimulaLoteria (quantidadeApostas, 
@@ -72,7 +73,7 @@ function fSimulaLoteria (quantidadeApostas,
 
       }; //for contadorVolanteAposta
 
-         exibeResultados (volantePremiado, volanteAposta, faixas);
+         exibeResultados (volantePremiado, volanteAposta, faixas, quantidadeApostas);
 
 
       function criaVolante (min, max, qtd) {
