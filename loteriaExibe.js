@@ -34,7 +34,6 @@ function exibeResultados (volantePremiado, volanteAposta, faixasDePremiacao, qua
             textoSaida += `${alinha ("E",e.nomeDisplay, 10)} `;
             textoSaida += `${alinha ("D", fSeparaMilhar(e.quantidadeOcorrencias), 10)} `;
             textoSaida += ` `.repeat (3);
-  //          textoSaida += `${alinha ("D", fSeparaMilhar(e.quantidadeOcorrencias/quantidadeApostas*100), 15)} `; //percentual... aqui parei
             textoSaida += `${alinha ("D", (e.quantidadeOcorrencias/quantidadeApostas*100).toFixed(4)+"%", 15)} `; //percentual... aqui parei
             textoSaida += ` `.repeat (5);
             textoSaida += `${alinha ("E", "#" + fSeparaMilhar(e.idVolantePrimeiraAposta), 12)} `;
@@ -49,7 +48,9 @@ function exibeResultados (volantePremiado, volanteAposta, faixasDePremiacao, qua
          imprimeSaida (`-----------------------------------------------------------`);
          imprimeSaida (`Quantidade de apostas    : ${fSeparaMilhar(quantidadeApostas)}`);
          imprimeSaida (`-----------------------------------------------------------`);
-
+         imprimeSaida (`Maior faixa premiada     : ${faixasDePremiacao[maiorfaixapremiada(faixasDePremiacao)].nomeDisplay}`);
+         imprimeSaida (`-----------------------------------------------------------`);
+         
          return ;
 
          function formataExibicaoDoVolanteConferido (faixa) {

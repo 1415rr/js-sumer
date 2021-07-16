@@ -31,12 +31,16 @@ function inicializaFaixas(limite=10, quantidadeDezenasVolanteApostas=6){
       faixas[faixaDeAcerto].quantidadeOcorrencias++;
 
 /* parei aqui:
-fazer uma funcao maiorfaixapremiada
-   reduce em faixas para retornar a maior premiada
+fazer uma funcao maiorfaixapremiada - ok
+   ok - reduce em faixas para retornar a maior premiada - reduce nao era a malhor solucao. a melhor era fazer a contagem regressiva.
 se a faixa atual for a maior premiada:
       funcao que acrescenta volanteAposta a faixas[faixaDeAcerto]
 se a quantidadeOcorrencias ==1 ( primeira ocorrencia ), apagar volanteAposta da faixa anterior (ZERO nao tem faixa anterior). 
-      funcao para isso? sim.
+      so testo maior premiada, se houver ocorrencia ==1.
+      só rodarei a funcao de pesquisa 6 vezes.
+      funcao para testar 1a ocorrencia ? pode ser.
+      funcao para apagar volante anteiror ? sim.
+      funcao para acumular volante ? sim.
  */
 
       return faixas;
@@ -59,3 +63,12 @@ se a quantidadeOcorrencias ==1 ( primeira ocorrencia ), apagar volanteAposta da 
       return marcacaoDosAcertos;
       
    } ;//confereVolantes
+
+   function maiorfaixapremiada (faixa){
+      let i;
+      for( i=faixa.length -1; i>=0; i--) {
+         if (faixa[i].quantidadeOcorrencias > 0) break;
+      };
+      return i;
+   };
+

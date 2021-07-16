@@ -8,8 +8,8 @@ debugConsoleLog ('loteria.js');
 
 function fMegaSena (){
 
-   fSimulaLoteria (  quantidadeApostas = 57 * 1000 *1000,
-                     //quantidadeApostas = 100,
+   fSimulaLoteria (  quantidadeApostas = 57 * 1000 ,
+                     //quantidadeApostas = 10,
                      limiteMinimoDeAcertosParaListar = 3, // lista quem fez terno ou mais
                      numeroMinimoDoSorteio = 01, // mega-sena = 1 a 60
                      numeroMaximoDoSorteio = 60, // mega-sena = 1 a 60
