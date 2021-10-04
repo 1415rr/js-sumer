@@ -1,11 +1,9 @@
 debugConsoleLog ('loteriaExibe.js');
 
-function exibeResultados (volantePremiado, volanteAposta, faixasDePremiacao, quantidadeApostas){
+function exibeResultados (volantePremiado, volanteAposta, faixasDePremiacao, quantidadeApostas, volantesRollMaioresAcertos){
 
    exibeCabecalho(volantePremiado);
-   exibeSumario  (volantePremiado, faixasDePremiacao, quantidadeApostas);
-
-      
+   exibeSumario  (volantePremiado, faixasDePremiacao, quantidadeApostas, volantesRollMaioresAcertos);
       
    };
 
@@ -18,15 +16,40 @@ function exibeResultados (volantePremiado, volanteAposta, faixasDePremiacao, qua
       imprimeSaida (``);
    };
 
-   function exibeSumario (volantePremiado, faixasDePremiacao, quantidadeApostas){
+  function exibeSumario (volantePremiado, faixasDePremiacao, quantidadeApostas, volantesRollMaioresAcertos){
       
       imprimeSaida (`${alinha("E", "acertos", 15)
                   }${alinha("E", "quantidade", 15)
                   }${alinha("E", "percentual", 15)
                   }${alinha("E", "primeiro volante", 20)
                   }${alinha("E", "prognósticos", 20)
-
                }`);
+
+      let imprimeRollMaioresAcertos = (paramVolantes) => {
+         let textoSaida;
+         let volanteFormataSaida = {};
+
+         paramVolantes.volantes.forEach (
+            function (e, i, arr ){
+//               arr.slice()
+               volanteFormataSaida.volantes = e;
+               volanteFormataSaida.marcacaoDosAcertos = paramVolantes.marcacaoDosAcertos[i];
+               console.log ('volanteFormataSaida', volanteFormataSaida);
+               textoSaida = `${alinha ('DIR', '#'+(i+1), 5)
+                           }  ${alinha ("C", formataExibicaoDoVolanteConferido (volanteFormataSaida), 40)
+                           } (#${ paramVolantes.idVolantes[i]}) `;
+               imprimeSaida ( textoSaida );
+            });
+         imprimeSaida (`-----------------------------------------------------------`);
+      };
+
+
+      let converteFaixaVolante = (faixa) => {
+         let objVolante={};
+         objVolante.volantes = faixa.volantePrimeiraAposta;
+         objVolante.marcacaoDosAcertos = faixa.marcacaoDosAcertos;
+         return objVolante;
+      };
 
       faixasDePremiacao.forEach(
          function (e, i, arr) {
@@ -38,27 +61,33 @@ function exibeResultados (volantePremiado, volanteAposta, faixasDePremiacao, qua
             textoSaida += ` `.repeat (5);
             textoSaida += `${alinha ("E", "#" + fSeparaMilhar(e.idVolantePrimeiraAposta), 12)} `;
             textoSaida += `: `;
-            textoSaida += `${alinha ("C", formataExibicaoDoVolanteConferido (e), 40)} `;
+            let eVolante = converteFaixaVolante(e);
+            textoSaida += `${alinha ("C", formataExibicaoDoVolanteConferido (eVolante), 40)} `;
 
             imprimeSaida (textoSaida);
    
             }//function
          );//forEach
-      
+
          imprimeSaida (`-----------------------------------------------------------`);
          imprimeSaida (`Quantidade de apostas    : ${fSeparaMilhar(quantidadeApostas)}`);
          imprimeSaida (`-----------------------------------------------------------`);
          imprimeSaida (`Maior faixa premiada     : ${faixasDePremiacao[maiorfaixapremiada(faixasDePremiacao)].nomeDisplay}`);
          imprimeSaida (`-----------------------------------------------------------`);
-         
+         imprimeSaida (``);
+         imprimeSaida (alinha ('CENTRO', `Hall de acertos - ${faixasDePremiacao[maiorfaixapremiada(faixasDePremiacao)].nomeDisplay}`, 50));
+         imprimeSaida (``);
+
+         imprimeRollMaioresAcertos (volantesRollMaioresAcertos);
+
          return ;
 
-         function formataExibicaoDoVolanteConferido (faixa) {
+         function formataExibicaoDoVolanteConferido (volanteConferido) {
             let prognosticosFormatados = [];
 
-            faixa.volantePrimeiraAposta.forEach (
+            volanteConferido.volantes.forEach (
                function (e, i, arr ){
-                  prognosticosFormatados[e]= (faixa.marcacaoDosAcertos.indexOf(i) < 0  ?  `  ${padRight(e, 2, '0')}  `: ` -${padRight(e, 2, '0')}- `);
+                  prognosticosFormatados[e]= (volanteConferido.marcacaoDosAcertos.indexOf(i) < 0  ?  `  ${padRight(e, 2, '0')}  `: ` -${padRight(e, 2, '0')}- `);
                }   //function
             );  //forEach
 

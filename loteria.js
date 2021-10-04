@@ -23,6 +23,7 @@ function fMegaSena (){
 // colocar o percentual das quantidades - ok
 // formatar a saida - ok
 // --> colocar o ranking dos melhores pontos (selecionado ou automatico - melhor colocacao ex: todas as quinas se nao tiver nenhuma sena)
+//estou tentando implementar com closure. procurar "closure aqui" 2x no loteriaConfere.js
 
 
 function fSimulaLoteria (quantidadeApostas, 
@@ -73,7 +74,7 @@ function fSimulaLoteria (quantidadeApostas,
 
       }; //for contadorVolanteAposta
 
-         exibeResultados (volantePremiado, volanteAposta, faixas, quantidadeApostas);
+      exibeResultados (volantePremiado, volanteAposta, faixas, quantidadeApostas, rollMaioresAcertos);
 
 
       function criaVolante (min, max, qtd) {

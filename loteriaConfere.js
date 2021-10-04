@@ -20,8 +20,15 @@ function inicializaFaixas(limite=10, quantidadeDezenasVolanteApostas=6){
   };  //inicializaFaixas
 
 
+   var rollMaioresAcertos = {
+      quantidade : 0,
+      volantes : [],
+      marcacaoDosAcertos : [],
+      idVolantes : []
+   };
+   
   function contabilizaAcertos (idVolanteAposta, volanteAposta, faixas, marcacaoDosAcertos){ 
-      let faixaDeAcerto = marcacaoDosAcertos.length;
+      let faixaDeAcerto = marcacaoDosAcertos.length;   
 
       if (faixas[faixaDeAcerto].quantidadeOcorrencias === 0) {
          faixas[faixaDeAcerto].idVolantePrimeiraAposta = idVolanteAposta;
@@ -30,18 +37,22 @@ function inicializaFaixas(limite=10, quantidadeDezenasVolanteApostas=6){
       };  //if
       faixas[faixaDeAcerto].quantidadeOcorrencias++;
 
-/* parei aqui:
-fazer uma funcao maiorfaixapremiada - ok
-   ok - reduce em faixas para retornar a maior premiada - reduce nao era a malhor solucao. a melhor era fazer a contagem regressiva.
-se a faixa atual for a maior premiada:
-      funcao que acrescenta volanteAposta a faixas[faixaDeAcerto]
-se a quantidadeOcorrencias ==1 ( primeira ocorrencia ), apagar volanteAposta da faixa anterior (ZERO nao tem faixa anterior). 
-      so testo maior premiada, se houver ocorrencia ==1.
-      só rodarei a funcao de pesquisa 6 vezes.
-      funcao para testar 1a ocorrencia ? pode ser.
-      funcao para apagar volante anteiror ? sim.
-      funcao para acumular volante ? sim.
- */
+      //trataRollMaioresAcertos
+         let resetRollMaioresAcertos = (quantidade)=> { rollMaioresAcertos = { quantidade, volantes:[] , marcacaoDosAcertos:[] , idVolantes:[]} };
+         let getRollMaioresAcertos = () => (rollMaioresAcertos.quantidade);
+         let addRollMaioresAcertos = (volantes, marcacaoDosAcertos, idVolantes) => { 
+            rollMaioresAcertos.volantes.push(volantes);
+            rollMaioresAcertos.marcacaoDosAcertos.push(marcacaoDosAcertos) ;
+            rollMaioresAcertos.idVolantes.push(idVolantes) ;
+         };
+
+         if (getRollMaioresAcertos() < faixaDeAcerto) {
+            resetRollMaioresAcertos(faixaDeAcerto);
+         };
+         if (getRollMaioresAcertos() === faixaDeAcerto) {
+            addRollMaioresAcertos(volanteAposta, marcacaoDosAcertos, idVolanteAposta);
+         };
+      //fim - trataRollMaioresAcertos
 
       return faixas;
      }; //contabilizaAcertos
@@ -71,4 +82,29 @@ se a quantidadeOcorrencias ==1 ( primeira ocorrencia ), apagar volanteAposta da 
       };
       return i;
    };
+
+
+   ///closure aqui - daqui para baixo estou tentando implementar
+
+   
+
+   function addPrognostico (listaPrognosticos, volante) {
+      listaPrognosticos.push(volante);
+      return listaPrognosticos;
+   };
+
+   function quantidadeAcertosMereceRegistro (quantidadeParaRegistro, quantidadeAcertos) {
+      return (quantidadeAcertos>=quantidadeParaRegistro);
+   };
+
+   // function setMaiorQuantidadeAcertos(quantidadeAcertos){
+   //    if ( quantidadeAcertosClosure < quantidadeAcertos ){
+   //       quantidadeAcertosClosure = quantidadeAcertos;
+   //    };
+   //    let quantidadeAcertosClosure = quantidadeAcertos;
+   //    let getMaiorQuantidadeAcertos => quantidadeAcertosClosure; 
+   // };
+         
+
+ 
 
